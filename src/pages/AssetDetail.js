@@ -20,6 +20,9 @@ const AssetDetail = () => {
   const [error, setError] = useState(null);
   const [amount, setAmount] = useState('');
   const [actionMessage, setActionMessage] = useState('');
+  
+  // New state for input mode (crypto amount or USD value)
+  const [inputMode, setInputMode] = useState('crypto'); // 'crypto' or 'usd'
 
   // Function to map user-friendly timeframes to API parameters
   const getIntervalParam = (timeframe) => {
@@ -113,6 +116,12 @@ const AssetDetail = () => {
     setTimeframe(newTimeframe);
   };
 
+  // Toggle between crypto and USD input modes
+  const toggleInputMode = () => {
+    setInputMode(prevMode => prevMode === 'crypto' ? 'usd' : 'crypto');
+    setAmount(''); // Clear input when switching modes
+  };
+
   const handleAddAsset = () => {
     if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
       setActionMessage('Please enter a valid amount');
@@ -121,8 +130,25 @@ const AssetDetail = () => {
     }
     
     try {
-      addAsset(asset, parseFloat(amount));
-      setActionMessage(`Added ${amount} ${asset.symbol} to your wallet`);
+      // If in USD mode, calculate the crypto amount based on USD value
+      let cryptoAmount;
+      if (inputMode === 'usd') {
+        const usdAmount = parseFloat(amount);
+        const price = parseFloat(asset.priceUsd);
+        cryptoAmount = usdAmount / price;
+        
+        // Format for display
+        const formattedCryptoAmount = cryptoAmount.toFixed(8);
+        
+        addAsset(asset, cryptoAmount);
+        setActionMessage(`Added ${formattedCryptoAmount} ${asset.symbol} (${formatCurrency(usdAmount)}) to your wallet`);
+      } else {
+        // Regular crypto amount mode
+        cryptoAmount = parseFloat(amount);
+        addAsset(asset, cryptoAmount);
+        setActionMessage(`Added ${amount} ${asset.symbol} to your wallet`);
+      }
+      
       setTimeout(() => setActionMessage(''), 3000);
       setAmount('');
     } catch (error) {
@@ -140,8 +166,25 @@ const AssetDetail = () => {
     }
     
     try {
-      removeAsset(id, parseFloat(amount));
-      setActionMessage(`Removed ${amount} ${asset.symbol} from your wallet`);
+      // If in USD mode, calculate the crypto amount based on USD value
+      let cryptoAmount;
+      if (inputMode === 'usd') {
+        const usdAmount = parseFloat(amount);
+        const price = parseFloat(asset.priceUsd);
+        cryptoAmount = usdAmount / price;
+        
+        // Format for display
+        const formattedCryptoAmount = cryptoAmount.toFixed(8);
+        
+        removeAsset(id, cryptoAmount);
+        setActionMessage(`Removed ${formattedCryptoAmount} ${asset.symbol} (${formatCurrency(usdAmount)}) from your wallet`);
+      } else {
+        // Regular crypto amount mode
+        cryptoAmount = parseFloat(amount);
+        removeAsset(id, cryptoAmount);
+        setActionMessage(`Removed ${amount} ${asset.symbol} from your wallet`);
+      }
+      
       setTimeout(() => setActionMessage(''), 3000);
       setAmount('');
     } catch (error) {
@@ -174,6 +217,23 @@ const AssetDetail = () => {
       case 'w1': return '1 Week';
       case 'm1': return '1 Month';
       default: return tf;
+    }
+  };
+
+  // Calculate equivalent value based on input mode
+  const calculateEquivalentValue = () => {
+    if (!amount || isNaN(amount) || !asset) return null;
+    
+    const inputAmount = parseFloat(amount);
+    
+    if (inputMode === 'crypto') {
+      // Calculate USD value of crypto amount
+      const usdValue = inputAmount * parseFloat(asset.priceUsd);
+      return `≈ ${formatCurrency(usdValue)}`;
+    } else {
+      // Calculate crypto amount from USD value
+      const cryptoAmount = inputAmount / parseFloat(asset.priceUsd);
+      return `≈ ${cryptoAmount.toFixed(8)} ${asset.symbol}`;
     }
   };
 
@@ -271,16 +331,42 @@ const AssetDetail = () => {
             </div>
           )}
           
+          <div className="input-mode-toggle">
+            <button 
+              className={inputMode === 'crypto' ? 'active' : ''}
+              onClick={() => setInputMode('crypto')}
+            >
+              {asset.symbol} Amount
+            </button>
+            <button 
+              className={inputMode === 'usd' ? 'active' : ''}
+              onClick={() => setInputMode('usd')}
+            >
+              USD Value
+            </button>
+          </div>
+          
           <div className="action-form">
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              placeholder="Enter amount"
-              min="0"
-              step="any"
-              className="amount-input"
-            />
+            {/* Add a conditional class to the wrapper based on input mode */}
+            <div className={`amount-input-wrapper ${inputMode === 'crypto' ? 'crypto-mode' : ''}`}>
+              <input
+                type="number"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                placeholder={inputMode === 'crypto' ? `Enter ${asset.symbol} amount` : 'Enter USD amount'}
+                min="0"
+                step="any"
+                className="amount-input"
+              />
+              {inputMode === 'usd' && <span className="input-prefix">$</span>}
+            </div>
+            
+            {amount && (
+              <div className="equivalent-value">
+                {calculateEquivalentValue()}
+              </div>
+            )}
+            
             <div className="action-buttons">
               <button onClick={handleAddAsset} className="add-button">Add to Wallet</button>
               <button 

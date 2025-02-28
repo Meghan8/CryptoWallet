@@ -10,15 +10,34 @@ export const ThemeProvider = ({ children }) => {
     if (savedTheme) {
       setDarkMode(JSON.parse(savedTheme));
     } else {
-      // Check for system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setDarkMode(prefersDark);
+      // Check for system preference with a safety check for testing environments
+      try {
+        // Mock matchMedia for testing environments
+        if (!window.matchMedia) {
+          window.matchMedia = () => ({
+            matches: false,
+            addListener: () => {},
+            removeListener: () => {}
+          });
+        }
+        
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setDarkMode(prefersDark);
+      } catch (error) {
+        console.warn('Could not detect system theme preference:', error);
+        // Default to light mode if detection fails
+        setDarkMode(false);
+      }
     }
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle('dark-mode', darkMode);
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    try {
+      document.body.classList.toggle('dark-mode', darkMode);
+      localStorage.setItem('darkMode', JSON.stringify(darkMode));
+    } catch (error) {
+      console.warn('Could not apply theme preferences:', error);
+    }
   }, [darkMode]);
 
   const toggleTheme = () => {

@@ -37,6 +37,7 @@ const Wallet = () => {
         console.log("Wallet is empty or contains invalid assets");
         setWalletData([]);
         setTotalValue(0);
+        localStorage.setItem('walletTotalValue', '0'); // Update shared total
         setLoading(false);
         return;
       }
@@ -96,6 +97,10 @@ const Wallet = () => {
       );
       
       console.log("Calculated total value:", calculatedTotal);
+      
+      // Store total value for other components to use
+      localStorage.setItem('lastPriceUpdate', Date.now().toString());
+      localStorage.setItem('walletTotalValue', calculatedTotal.toString());
       
       setWalletData(sortedAssets);
       setTotalValue(calculatedTotal);
