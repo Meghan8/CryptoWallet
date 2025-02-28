@@ -1,0 +1,124 @@
+.asset-list-container {
+    overflow-x: auto;
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.5rem;
+  }
+  
+  .asset-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+  }
+  
+  .asset-table th,
+  .asset-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .asset-table th {
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .asset-table th:hover {
+    color: var(--primary-color);
+  }
+  
+  .asset-table tbody tr {
+    transition: var(--transition);
+  }
+  
+  .asset-table tbody tr:hover {
+    background-color: var(--hover-color);
+  }
+  
+  .asset-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .asset-name-cell {
+    min-width: 200px;
+  }
+  
+  .asset-link {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    text-decoration: none;
+  }
+  
+  .asset-icon-small {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.75rem;
+    object-fit: contain;
+  }
+  
+  .asset-name {
+    display: block;
+    font-weight: 500;
+  }
+  
+  .asset-symbol {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+  }
+  
+  .wallet-cell {
+    font-weight: 500;
+  }
+  
+  .wallet-amount {
+    color: var(--primary-color);
+  }
+  
+  .not-in-wallet {
+    color: var(--text-secondary);
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+  }
+  
+  .pagination-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .pagination-button:hover:not(:disabled) {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+  }
+  
+  .pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .page-indicator {
+    margin: 0 1rem;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .asset-list-container {
+      margin-left: -0.5rem;
+      margin-right: -0.5rem;
+      border-radius: 0;
+    }
+  }

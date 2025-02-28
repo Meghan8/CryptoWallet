@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { WalletProvider } from './contexts/WalletContext';
+import { ThemeProvider } from './contexts/ThemeContext';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import AssetDetail from './pages/AssetDetail';
+import Wallet from './pages/Wallet';
+import NotFound from './pages/NotFound';
+import './styles/App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Crypto Wallet.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <WalletProvider>
+        <Router>
+          <div className="app-container">
+            <Navbar />
+            <main className="main-content">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/asset/:id" element={<AssetDetail />} />
+                <Route path="/wallet" element={<Wallet />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            <Footer />
+          </div>
+        </Router>
+      </WalletProvider>
+    </ThemeProvider>
   );
 }
 

@@ -1,0 +1,39 @@
+.price-stats {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .price-stats h3 {
+    margin-bottom: 1.25rem;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1.5rem;
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-value {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }

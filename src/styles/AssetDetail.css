@@ -1,0 +1,225 @@
+.asset-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.asset-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.asset-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.asset-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.asset-rank {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.asset-price h2 {
+  text-align: right;
+  margin-bottom: 0.25rem;
+}
+
+.asset-price p {
+  text-align: right;
+  font-size: 1rem;
+}
+
+.asset-chart-container {
+  margin-bottom: 2rem;
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.timeframe-selector {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.timeframe-selector button {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.timeframe-selector button:hover {
+  background-color: var(--hover-color);
+}
+
+.timeframe-selector button.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.chart-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.timeframe-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.chart-loading {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.chart-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.chart-error {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--danger-color);
+  text-align: center;
+}
+
+.asset-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.wallet-actions {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.wallet-actions h3 {
+  margin-bottom: 1rem;
+}
+
+.action-message {
+  padding: 0.75rem;
+  margin: 1rem 0;
+  background-color: rgba(56, 97, 251, 0.1);
+  border-left: 4px solid var(--primary-color);
+  border-radius: var(--radius);
+  color: var(--primary-color);
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.action-form {
+  margin-top: 1.5rem;
+}
+
+.amount-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.add-button, .remove-button {
+  padding: 0.75rem;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.add-button {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.add-button:hover {
+  background-color: #14b679;
+}
+
+.remove-button {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.remove-button:hover {
+  background-color: #d9363f;
+}
+
+.remove-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .asset-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .asset-price {
+    margin-top: 1rem;
+    align-self: flex-start;
+  }
+  
+  .asset-price h2, .asset-price p {
+    text-align: left;
+  }
+  
+  .asset-content {
+    grid-template-columns: 1fr;
+  }
+}

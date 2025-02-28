@@ -1,0 +1,103 @@
+:root {
+    --primary-color: #3861fb;
+    --secondary-color: #16c784;
+    --danger-color: #ea3943;
+    --text-color: #1e2026;
+    --text-secondary: #58667e;
+    --bg-color: #f8f8f8;
+    --card-bg: #ffffff;
+    --border-color: #eff2f5;
+    --hover-color: #f8fafd;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --transition: all 0.2s ease;
+    --radius: 8px;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  body.dark-mode {
+    --text-color: #eaecef;
+    --text-secondary: #b6b6b6;
+    --bg-color: #1a1e27;
+    --card-bg: #2c2f36;
+    --border-color: #40444f;
+    --hover-color: #383d49;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: var(--transition);
+  }
+  
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .main-content {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 100%;
+  }
+  
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  button {
+    cursor: pointer;
+    font-family: var(--font-family);
+  }
+  
+  .positive-change {
+    color: var(--secondary-color);
+  }
+  
+  .negative-change {
+    color: var(--danger-color);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+  
+  .card:hover {
+    box-shadow: var(--shadow-md);
+  }
+  
+  @media (max-width: 768px) {
+    .main-content {
+      padding: 0.5rem;
+    }
+  }

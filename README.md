@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# CryptoWallet
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A comprehensive cryptocurrency tracking application that allows users to monitor asset prices, view detailed information, and manage a personal crypto portfolio.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Asset Browsing**: View a comprehensive list of cryptocurrency assets with real-time prices, market cap, volume, and 24h price changes
+- **Search & Filter**: Easily find specific assets using the search functionality
+- **Asset Details**: View in-depth information about each asset, including:
+  - Current pricing data
+  - Historical price charts with multiple timeframes (1H, 1D, 1W, 1M)
+  - Market statistics (market cap, volume, supply)
+- **Personal Wallet Management**:
+  - Add and remove assets in your portfolio
+  - Track the total value of your holdings in USD
+  - View portfolio distribution with an interactive pie chart
+  - Persist wallet data between sessions using local storage
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Dark Mode Support**: Toggle between light and dark themes
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React (Create React App)
+- React Router for navigation
+- Context API for state management
+- Chart.js for data visualization
+- CoinCap API for real-time cryptocurrency data
+- Local Storage for data persistence
+- Jest for testing
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v14.0.0 or higher)
+- npm (v6.0.0 or higher)
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
+   ```
+   git clone https://github.com/Meghan8/CryptoWallet.git
+   cd CryptoWallet
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Start the development server:
+   ```
+   npm start
+   ```
 
-### `npm run eject`
+4. Open your browser and navigate to `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Building for Production
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To build the application for production:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Running Tests
 
-## Learn More
+To run the test suite:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm test
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+CryptoWallet/
+├── public/                # Static files
+├── src/
+│   ├── api/               # API services
+│   ├── components/        # Reusable UI components
+│   ├── contexts/          # React Context providers
+│   ├── pages/             # Page components
+│   ├── styles/            # CSS styles
+│   ├── App.js             # Main application component
+│   └── index.js           # Application entry point
+└── package.json           # Dependencies and scripts
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## API Usage
 
-### Analyzing the Bundle Size
+This application uses the [CoinCap API](https://docs.coincap.io/) to fetch cryptocurrency data. The main endpoints used are:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `/assets` - Get a list of all assets
+- `/assets/{id}` - Get information about a specific asset
+- `/assets/{id}/history` - Get price history for an asset
 
-### Making a Progressive Web App
+## Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- User authentication with cloud storage for portfolio data
+- Price alerts and notifications
+- Portfolio performance tracking over time
+- Transaction history with purchase prices
+- Support for multiple fiat currencies
+- News integration for each asset
+- Advanced filtering and sorting options

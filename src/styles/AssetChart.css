@@ -1,0 +1,25 @@
+.chart-container {
+    height: 400px;
+    width: 100%;
+    position: relative;
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .no-chart-data {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .chart-container {
+      height: 300px;
+      padding: 0.5rem;
+    }
+  }
