@@ -95,6 +95,10 @@ This application uses the [CoinCap API](https://docs.coincap.io/) to fetch crypt
 - `/assets/{id}` - Get information about a specific asset
 - `/assets/{id}/history` - Get price history for an asset
 
+## Project Note
+
+I was excited to work on this project and put in considerable effort to complete it within the 3-day timeframe. Due to these time constraints, there might be some minor bugs or areas for improvement that I'd love to discuss during our interview. I focused on delivering a clean, functional application with all the required features while maintaining good code organization and user experience. Given more time, I would have expanded test coverage and implemented some of the enhancement ideas listed below.
+
 ## Future Enhancements
 
 - User authentication with cloud storage for portfolio data
