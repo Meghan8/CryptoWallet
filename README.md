@@ -2,6 +2,10 @@
 
 A comprehensive cryptocurrency tracking application that allows users to monitor asset prices, view detailed information, and manage a personal crypto portfolio.
 
+### Development Note
+
+In the interest of transparency, I leveraged ChatGPT to assist with some of the CSS styling and boilerplate code patterns. The core application logic, component architecture, and feature implementation were designed and coded by me. Using AI tools allowed me to focus more on the application's functionality and user experience within the given time constraints.
+
 ## Features
 
 - **Asset Browsing**: View a comprehensive list of cryptocurrency assets with real-time prices, market cap, volume, and 24h price changes
